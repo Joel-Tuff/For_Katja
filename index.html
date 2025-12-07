@@ -7,7 +7,7 @@
 </head>
 <body>
 
-    <div class="login-box">
+    <div class="login-box" id="loginBox">
         <h2>Login</h2>
 
         <input type="text" id="username" placeholder="Benutzername">
@@ -16,6 +16,11 @@
         <button onclick="login()">Anmelden</button>
 
         <p id="error-text"></p>
+    </div>
+
+    <!-- ✅ WILLKOMMEN SCREEN -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <h1 id="welcomeText"></h1>
     </div>
 
     <script src="script.js"></script>
