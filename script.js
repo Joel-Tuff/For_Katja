@@ -1,31 +1,78 @@
-// ✅ HIER kannst du deine Login-Daten ändern:
+// ✅ LOGIN DATEN ÄNDERN
 let correctUsername = "katja";
 let correctPassword = "1234";
+let errorMessage = "Falsche Login-Daten!";
 
-// ✅ HIER kannst du den Fehlertext ändern:
-let errorMessage = "Falscher Benutzername oder Passwort!";
+// ✅ ELEMENTE
+let loginBox = document.getElementById("loginBox");
+let welcomeScreen = document.getElementById("welcomeScreen");
+let welcomeText = document.getElementById("welcomeText");
+let gameScreen = document.getElementById("gameScreen");
+let endScreen = document.getElementById("endScreen");
+let errorText = document.getElementById("error-text");
 
 function login() {
-    let usernameInput = document.getElementById("username").value;
-    let passwordInput = document.getElementById("password").value;
-    let errorText = document.getElementById("error-text");
+    let u = document.getElementById("username").value;
+    let p = document.getElementById("password").value;
 
-    let loginBox = document.getElementById("loginBox");
-    let welcomeScreen = document.getElementById("welcomeScreen");
-    let welcomeText = document.getElementById("welcomeText");
-
-    if (usernameInput === correctUsername && passwordInput === correctPassword) {
-        // ✅ LOGIN AUSBLENDEN
+    if (u === correctUsername && p === correctPassword) {
         loginBox.style.display = "none";
-
-        // ✅ WILLKOMMEN TEXT SETZEN
-        welcomeText.textContent = "Willkommen " + usernameInput.toUpperCase();
-
-        // ✅ ANIMATION EINBLENDEN
+        welcomeText.textContent = "Willkommen " + u.toUpperCase();
         welcomeScreen.style.display = "flex";
 
+        setTimeout(() => {
+            welcomeScreen.style.display = "none";
+            gameScreen.style.display = "flex";
+            startGame();
+        }, 2500);
     } else {
-        errorText.style.color = "#ff4d4d";
         errorText.textContent = errorMessage;
     }
+}
+
+// ✅ FLAPPY BIRD MINI GAME
+let canvas = document.getElementById("gameCanvas");
+let ctx = canvas.getContext("2d");
+
+let birdY = 200;
+let gravity = 1.5;
+let velocity = 0;
+let pipeX = 400;
+let gap = 130;
+let score = 0;
+
+document.addEventListener("keydown", () => velocity = -10);
+
+function startGame() {
+    let gameLoop = setInterval(() => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Bird
+        velocity += gravity;
+        birdY += velocity;
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(50, birdY, 20, 20);
+
+        // Pipe
+        pipeX -= 3;
+        if (pipeX < -40) {
+            pipeX = 400;
+            score++;
+        }
+
+        ctx.fillStyle = "green";
+        ctx.fillRect(pipeX, 0, 40, 150);
+        ctx.fillRect(pipeX, 280, 40, 300);
+
+        ctx.fillStyle = "black";
+        ctx.fillText("Punkte: " + score, 10, 20);
+
+        // WIN
+        if (score >= 10) {
+            clearInterval(gameLoop);
+            gameScreen.style.display = "none";
+            endScreen.style.display = "flex";
+        }
+
+    }, 20);
 }
