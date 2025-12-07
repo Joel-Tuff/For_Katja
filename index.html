@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Katja</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Anmeldung</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
+<div class="login-container">
+<h1>Login</h1>
+<div class="login-card">
+<input type="text" id="username" placeholder="Benutzername" />
+<input type="password" id="password" placeholder="Passwort" />
+<button onclick="login()">Anmelden</button>
+<p id="message"></p>
+</div>
+</div>
 
-    <div class="container">
-        <h1 class="title">Welcome <span>Katja</span></h1>
-        <p class="subtitle">Nice to see you here 💜</p>
-        <button class="btn" onclick="showMessage()">Click me</button>
-        <p id="message"></p>
-    </div>
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-
