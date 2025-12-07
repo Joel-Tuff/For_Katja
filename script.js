@@ -106,7 +106,11 @@ let finalAnimationScreen=document.getElementById("finalAnimationScreen");
 let finalAnimationText=document.getElementById("finalAnimationText");
 let finalBtn=document.getElementById("finalBtn");
 function showFinalButton(){ finalAnimationScreen.style.display="flex"; finalAnimationText.textContent="";}
-finalBtn.addEventListener("click",()=>{ finalAnimationText.textContent="NAJA lassen wir das mal Durchgehen"; finalAnimationText.style.animation="finalGlow 3s ease-in-out"; setTimeout(startRedTextSequence,4000); });
+finalBtn.addEventListener("click",()=>{
+    finalAnimationText.textContent="NAJA lassen wir das mal Durchgehen";
+    finalAnimationText.style.animation="finalGlow 3s ease-in-out";
+    setTimeout(startRedTextSequence,4000);
+});
 
 // =======================
 // Roter Text + Button-Game
@@ -133,6 +137,9 @@ function startButtonGame(){
     clickButton.addEventListener("click",()=>{
         clicks++;
         clickCounter.textContent=`${clicks} / 500`;
+        clickCounter.style.color="red";
+        clickCounter.style.transform="scale(1.3)";
+        setTimeout(()=>{clickCounter.style.transform="scale(1)";},150);
         if(clicks>=500){
             buttonGameScreen.style.display="none";
             startDoorAnimation();
