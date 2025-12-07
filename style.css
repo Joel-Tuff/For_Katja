@@ -21,6 +21,7 @@ body {
     width: 320px;
     box-shadow: 0 0 25px rgba(0,0,0,0.4);
     backdrop-filter: blur(10px);
+    animation: fadeIn 1s ease;
 }
 
 .login-box h2 {
@@ -58,4 +59,38 @@ body {
     color: #ff4d4d;
     margin-top: 10px;
     font-size: 14px;
+}
+
+/* ✅ WILLKOMMEN ANIMATION */
+.welcome-screen {
+    position: absolute;
+    inset: 0;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.welcome-screen h1 {
+    font-size: 60px;
+    color: #00c6ff;
+    animation: zoomIn 1.2s ease;
+    text-shadow: 0 0 20px #00c6ff;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }
