@@ -61,7 +61,8 @@ body {
 .game-screen,
 .animation-screen,
 .quiz-screen,
-.quiz-result-screen {
+.quiz-result-screen,
+.final-animation-screen {
     position: absolute;
     inset: 0;
     background: black;
@@ -70,13 +71,15 @@ body {
     align-items: center;
     flex-direction: column;
     padding: 20px;
+    text-align: center;
 }
 
 /* TEXT */
 .welcome-screen h1,
 .animation-screen h1,
 .quiz-screen h2,
-.quiz-result-screen h1 {
+.quiz-result-screen h1,
+.final-animation-screen h1 {
     font-size: clamp(32px, 8vw, 60px);
     color: #00c6ff;
     text-shadow: 0 0 20px #00c6ff;
@@ -90,15 +93,27 @@ body {
 }
 
 #startBtn,
-.quiz-screen button {
+.quiz-screen button,
+.final-animation-screen button {
     padding: 12px 30px;
     font-size: 18px;
     border-radius: 10px;
     border: none;
     margin-top: 15px;
-    background: lime;
     cursor: pointer;
     font-weight: bold;
+}
+
+#startBtn { background: lime; }
+.quiz-screen button { background: #00c6ff; color: black; }
+.final-animation-screen button { 
+    background: #00ffff; color: black;
+    box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.final-animation-screen button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
 }
 
 #quizAnswer {
@@ -141,4 +156,10 @@ canvas {
     50% {color: #0000ff;}
     75% {color: #ffff00;}
     100% {color: #ff00ff;}
+}
+
+@keyframes finalGlow {
+    0% {opacity: 0; transform: scale(0);}
+    50% {opacity: 1; transform: scale(1.3);}
+    100% {opacity: 1; transform: scale(1);}
 }
