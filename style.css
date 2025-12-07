@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* ✅ kein Scrollen auf Handy */
+    overflow: hidden;
 }
 
 /* LOGIN */
@@ -59,7 +59,7 @@ body {
 /* SCREENS */
 .welcome-screen,
 .game-screen,
-.end-screen {
+.animation-screen {
     position: absolute;
     inset: 0;
     background: black;
@@ -67,33 +67,25 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 10px;
+    padding: 20px;
 }
 
 /* TEXT */
 .welcome-screen h1,
-.end-screen h1 {
+.animation-screen h1 {
     font-size: clamp(32px, 8vw, 60px);
     color: #00c6ff;
     text-shadow: 0 0 20px #00c6ff;
-    animation: zoomIn 1s ease;
     text-align: center;
 }
 
-.end-screen p {
-    color: white;
-    margin-top: 20px;
-    font-size: clamp(16px, 5vw, 22px);
-    text-align: center;
-}
-
-/* GAME */
 .game-screen h2 {
     color: white;
     margin-bottom: 10px;
     text-align: center;
 }
 
+/* START BUTTON */
 #startBtn {
     padding: 12px 30px;
     font-size: 18px;
@@ -105,17 +97,35 @@ body {
     font-weight: bold;
 }
 
-/* ✅ RESPONSIVES CANVAS */
+/* CANVAS */
 canvas {
     background: skyblue;
     border-radius: 10px;
     width: 100%;
     max-width: 400px;
     height: auto;
-    touch-action: manipulation; /* ✅ saubere Touch-Steuerung */
+    touch-action: manipulation;
 }
 
-@keyframes zoomIn {
-    from {transform: scale(0); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+/* ANIMATIONEN */
+@keyframes fadeZoom {
+    0% {opacity: 0; transform: scale(0);}
+    50% {opacity: 1; transform: scale(1.2);}
+    100% {opacity: 0; transform: scale(1);}
+}
+
+@keyframes glitch {
+    0% {text-shadow: 2px 0 red, -2px 0 cyan;}
+    50% {text-shadow: -2px 0 red, 2px 0 cyan;}
+    100% {text-shadow: 2px 0 red, -2px 0 cyan;}
+}
+
+@keyframes colorFlash {
+    0% {color: #ff0000;}
+    25% {color: #00ff00;}
+    50% {color: #0000ff;}
+    75% {color: #ffff00;}
+    100% {color: #ff00ff;}
+}
+1;}
 }
