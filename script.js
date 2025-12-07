@@ -120,7 +120,7 @@ function startGame() {
 }
 
 // =======================
-// ANIMATIONEN NACH SPIEL
+// ANIMATIONEN
 // =======================
 function startAnimations() {
     let texts = [
@@ -134,7 +134,7 @@ function startAnimations() {
     function showNext() {
         if (current >= texts.length) {
             animationScreen.style.display = "none";
-            // Optional: hier könntest du Quiz starten
+            startQuiz();
             return;
         }
 
@@ -142,14 +142,81 @@ function startAnimations() {
         animationText.textContent = texts[current];
 
         switch(current) {
-            case 0: animationText.style.animation = "fadeZoom 2s ease-in-out"; break;
-            case 1: animationText.style.animation = "glitch 1.5s infinite"; break;
-            case 2: animationText.style.animation = "colorFlash 2s infinite"; break;
+            case 0: animationText.style.animation = "fadeZoom 4s ease-in-out"; break;
+            case 1: animationText.style.animation = "glitch 3s infinite"; break;
+            case 2: animationText.style.animation = "colorFlash 4s infinite"; break;
         }
 
         current++;
-        setTimeout(showNext, 3000);
+        setTimeout(showNext, 4000);
     }
 
     showNext();
+}
+
+// =======================
+// QUIZ SYSTEM
+// =======================
+let quizScreen = document.getElementById("quizScreen");
+let quizQuestion = document.getElementById("quizQuestion");
+let quizAnswer = document.getElementById("quizAnswer");
+let quizFeedback = document.getElementById("quizFeedback");
+
+let quizResultScreen = document.getElementById("quizResultScreen");
+let quizResultText = document.getElementById("quizResultText");
+let quizScoreText = document.getElementById("quizScore");
+
+// Fragen & Antworten (kannst du ändern!)
+let quizData = [
+    {q:"Was ist die Hauptstadt von Deutschland?", a:"Berlin"},
+    {q:"Wie viele Kontinente gibt es?", a:"7"},
+    {q:"In welchem Jahr landete der erste Mensch auf dem Mond?", a:"1969"},
+    {q:"Welche Farbe hat der Himmel an einem klaren Tag?", a:"Blau"}
+];
+
+let currentQuestion = 0;
+let correctCount = 0;
+let wrongCount = 0;
+
+function startQuiz() {
+    currentQuestion = 0;
+    correctCount = 0;
+    wrongCount = 0;
+    quizScreen.style.display = "flex";
+    showQuestion();
+}
+
+function showQuestion() {
+    quizAnswer.value = "";
+    quizFeedback.textContent = "";
+    quizQuestion.textContent = quizData[currentQuestion].q;
+    quizAnswer.focus();
+}
+
+function submitAnswer() {
+    let answer = quizAnswer.value.trim();
+    if (answer.toLowerCase() === quizData[currentQuestion].a.toLowerCase()) {
+        correctCount++;
+        quizFeedback.textContent = "Richtig!";
+        quizFeedback.style.color = "lime";
+    } else {
+        wrongCount++;
+        quizFeedback.textContent = "Falsch!";
+        quizFeedback.style.color = "red";
+    }
+
+    currentQuestion++;
+    if (currentQuestion >= quizData.length) {
+        // Quiz beendet
+        quizScreen.style.display = "none";
+        showQuizResult();
+    } else {
+        setTimeout(showQuestion, 1000);
+    }
+}
+
+function showQuizResult() {
+    quizResultScreen.style.display = "flex";
+    quizResultText.textContent = "Quiz beendet!";
+    quizScoreText.textContent = `Richtig: ${correctCount} | Falsch: ${wrongCount}`;
 }
