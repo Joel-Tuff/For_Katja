@@ -3,7 +3,7 @@ let correctUsername = "admin";
 let correctPassword = "1234";
 
 // ✅ HIER kannst du den Fehlertext ändern:
-let errorMessage = "Falscher Benutzername oder Passwort!";
+let errorMessage = "TIPP: Benutzer=Name Passwort=Datum ";
 
 function login() {
     let usernameInput = document.getElementById("username").value;
