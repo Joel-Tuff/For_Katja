@@ -165,7 +165,6 @@ let quizResultScreen = document.getElementById("quizResultScreen");
 let quizResultText = document.getElementById("quizResultText");
 let quizScoreText = document.getElementById("quizScore");
 
-// Fragen & Antworten (hier ändern!)
 let quizData = [
     {q:"Was ist die Hauptstadt von Deutschland?", a:"Berlin"},
     {q:"Wie viele Kontinente gibt es?", a:"7"},
@@ -212,5 +211,24 @@ function showQuizResult() {
     quizResultScreen.style.display = "flex";
     quizResultText.textContent = "Quiz beendet!";
     quizScoreText.textContent = `Richtig: ${correctCount} | Falsch: ${wrongCount}`;
+
+    // FINAL BUTTON ANZEIGEN
+    setTimeout(showFinalButton, 1500);
 }
 
+// =======================
+// FINAL ANIMATION BUTTON
+// =======================
+let finalAnimationScreen = document.getElementById("finalAnimationScreen");
+let finalAnimationText = document.getElementById("finalAnimationText");
+let finalBtn = document.getElementById("finalBtn");
+
+function showFinalButton() {
+    finalAnimationScreen.style.display = "flex";
+    finalAnimationText.textContent = ""; 
+}
+
+finalBtn.addEventListener("click", () => {
+    finalAnimationText.textContent = "NAJA lassen wir das mal Durchgehen";
+    finalAnimationText.style.animation = "finalGlow 3s ease-in-out";
+});
