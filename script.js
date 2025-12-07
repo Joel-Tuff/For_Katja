@@ -1,6 +1,26 @@
 // ➜ HIER ÄNDERN: Benutzername und Passwort
-const VALID_USER = "Joel"; // <--- Benutzername anpassen
-const VALID_PASS = "28.11.2025"; // <--- Passwort anpassen
+const VALID_USER = "admin"; // <--- Benutzername anpassen
+const VALID_PASS = "1234"; // <--- Passwort anpassen
+
+
+// ➜ HIER ÄNDERN: Tipps für das Menü
+const TIP_1 = "Tipp 1 hier eintragen";
+const TIP_2 = "Tipp 2 hier eintragen";
+
+
+function loadTips() {
+const list = document.getElementById("tipsList");
+list.innerHTML = `
+<li>${TIP_1}</li>
+<li>${TIP_2}</li>
+`;
+}
+
+
+function toggleTips() {
+const box = document.getElementById("tipsBox");
+box.classList.toggle("open");
+}
 
 
 function login() {
