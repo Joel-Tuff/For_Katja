@@ -31,19 +31,27 @@ function login() {
     }
 }
 
-// ✅ FLAPPY BIRD GAME
+// ✅ CANVAS SETUP (MOBIL SKALIERUNG)
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
 
+function resizeCanvas() {
+    canvas.width = 360;
+    canvas.height = 480;
+}
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
+
+// ✅ GAME VARS
 let birdY, gravity, velocity;
 let pipeX, gap;
 let score;
 let gameLoop;
 let gameRunning = false;
 
-// ✅ STEUERUNG: TASTE + MAUS + TOUCH
-document.addEventListener("keydown", () => {
-    if (gameRunning) velocity = -10;
+// ✅ STEUERUNG: TASTATUR + KLICK + TOUCH
+document.addEventListener("keydown", (e) => {
+    if (e.code === "Space" && gameRunning) velocity = -10;
 });
 
 canvas.addEventListener("click", () => {
@@ -59,7 +67,7 @@ function resetGame() {
     birdY = 200;
     gravity = 1.2;
     velocity = 0;
-    pipeX = 400;
+    pipeX = canvas.width;
     gap = 140;
     score = 0;
     gameRunning = false;
@@ -91,7 +99,7 @@ function startGame() {
         // ✅ PIPE
         pipeX -= 3;
         if (pipeX < -40) {
-            pipeX = 400;
+            pipeX = canvas.width;
             score++;
         }
 
@@ -100,7 +108,7 @@ function startGame() {
 
         ctx.fillStyle = "green";
         ctx.fillRect(pipeX, 0, 40, topPipeHeight);
-        ctx.fillRect(pipeX, bottomPipeY, 40, 500);
+        ctx.fillRect(pipeX, bottomPipeY, 40, canvas.height);
 
         // ✅ SCORE
         ctx.fillStyle = "black";
