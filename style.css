@@ -11,6 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden; /* ✅ kein Scrollen auf Handy */
 }
 
 /* LOGIN */
@@ -19,7 +20,8 @@ body {
     padding: 35px;
     border-radius: 15px;
     text-align: center;
-    width: 320px;
+    width: 90%;
+    max-width: 320px;
     box-shadow: 0 0 25px rgba(0,0,0,0.4);
     backdrop-filter: blur(10px);
 }
@@ -31,19 +33,21 @@ body {
 
 .login-box input {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     margin-bottom: 15px;
     border-radius: 8px;
     border: none;
+    font-size: 16px;
 }
 
 .login-box button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border-radius: 8px;
     border: none;
     background: #00c6ff;
     color: white;
+    font-size: 16px;
     cursor: pointer;
 }
 
@@ -63,32 +67,31 @@ body {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 10px;
 }
 
 /* TEXT */
 .welcome-screen h1,
 .end-screen h1 {
-    font-size: 60px;
+    font-size: clamp(32px, 8vw, 60px);
     color: #00c6ff;
     text-shadow: 0 0 20px #00c6ff;
     animation: zoomIn 1s ease;
+    text-align: center;
 }
 
 .end-screen p {
     color: white;
     margin-top: 20px;
-    font-size: 22px;
-}
-
-@keyframes zoomIn {
-    from {transform: scale(0); opacity: 0;}
-    to {transform: scale(1); opacity: 1;}
+    font-size: clamp(16px, 5vw, 22px);
+    text-align: center;
 }
 
 /* GAME */
 .game-screen h2 {
     color: white;
     margin-bottom: 10px;
+    text-align: center;
 }
 
 #startBtn {
@@ -102,8 +105,17 @@ body {
     font-weight: bold;
 }
 
+/* ✅ RESPONSIVES CANVAS */
 canvas {
     background: skyblue;
     border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    touch-action: manipulation; /* ✅ saubere Touch-Steuerung */
 }
 
+@keyframes zoomIn {
+    from {transform: scale(0); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
