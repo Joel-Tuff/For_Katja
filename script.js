@@ -41,16 +41,26 @@ let score;
 let gameLoop;
 let gameRunning = false;
 
+// ✅ STEUERUNG: TASTE + MAUS + TOUCH
 document.addEventListener("keydown", () => {
     if (gameRunning) velocity = -10;
 });
 
+canvas.addEventListener("click", () => {
+    if (gameRunning) velocity = -10;
+});
+
+canvas.addEventListener("touchstart", () => {
+    if (gameRunning) velocity = -10;
+});
+
+// ✅ RESET
 function resetGame() {
     birdY = 200;
-    gravity = 1.5;
+    gravity = 1.2;
     velocity = 0;
     pipeX = 400;
-    gap = 130;
+    gap = 140;
     score = 0;
     gameRunning = false;
     startBtn.style.display = "block";
@@ -60,9 +70,11 @@ function resetGame() {
 
 resetGame();
 
+// ✅ START BUTTON
 function startGame() {
     if (gameRunning) return;
 
+    resetGame();
     gameRunning = true;
     startBtn.style.display = "none";
 
@@ -72,6 +84,7 @@ function startGame() {
         // ✅ BIRD
         velocity += gravity;
         birdY += velocity;
+
         ctx.fillStyle = "yellow";
         ctx.fillRect(50, birdY, 20, 20);
 
@@ -91,15 +104,17 @@ function startGame() {
 
         // ✅ SCORE
         ctx.fillStyle = "black";
+        ctx.font = "16px Arial";
         ctx.fillText("Punkte: " + score, 10, 20);
 
         // ✅ KOLLISION
         if (
-            birdY < topPipeHeight && 50 + 20 > pipeX && 50 < pipeX + 40 ||
-            birdY + 20 > bottomPipeY && 50 + 20 > pipeX && 50 < pipeX + 40 ||
-            birdY > canvas.height
+            (birdY < topPipeHeight && 70 > pipeX && 50 < pipeX + 40) ||
+            (birdY + 20 > bottomPipeY && 70 > pipeX && 50 < pipeX + 40) ||
+            birdY > canvas.height ||
+            birdY < 0
         ) {
-            resetGame(); // 💀 NEUSTART
+            resetGame(); // 💀 NEUSTART BEI CRASH
         }
 
         // ✅ WIN
