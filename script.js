@@ -1,9 +1,9 @@
 // =======================
 // LOGIN
 // =======================
-let correctUsername = "katja";
-let correctPassword = "1234";
-let errorMessage = "Falsche Login-Daten!";
+let correctUsername = "Katja";
+let correctPassword = "28.11.2025";
+let errorMessage = "User=Name      Password=Tag/Monat/Jahr";
 
 let loginBox = document.getElementById("loginBox");
 let welcomeScreen = document.getElementById("welcomeScreen");
@@ -65,7 +65,7 @@ function startGame(){
 // ANIMATIONEN
 // =======================
 function startAnimations(){
-    let texts=["Jetzt kommen ein paar Fragen über mich","Wenn du nicht eine richtig hast, zerstört sich die Seite selber und du wirst nie das Ende sehen","Viel Glück"];
+    let texts=["Jetzt kommen ein paar Fragen über mich","Wenn du nichtmal eine richtig hast, zerstört sich die Seite selber und du wirst nie das Ende sehen","Viel Glück"];
     let current=0;
     function showNext(){
         if(current>=texts.length){ animationScreen.style.display="none"; startQuiz(); return;}
@@ -87,10 +87,10 @@ let quizResultText=document.getElementById("quizResultText");
 let quizScoreText=document.getElementById("quizScore");
 
 let quizData=[
-    {q:"Was ist die Hauptstadt von Deutschland?", a:"Berlin"},
-    {q:"Wie viele Kontinente gibt es?", a:"7"},
-    {q:"In welchem Jahr landete der erste Mensch auf dem Mond?", a:"1969"},
-    {q:"Welche Farbe hat der Himmel an einem klaren Tag?", a:"Blau"}
+    {q:"Was ist mein Lieblings Tier?", a:"Hund"},
+    {q:"Wie alt bin ich?", a:"17"},
+    {q:"Als was arbeite ich?", a:"Kaufmann für Büromanagement"},
+    {q:"Wieso mache ich das für dich?", a:"Weil du mich Liebst"}
 ];
 
 let currentQuestion=0, correctCount=0, wrongCount=0;
