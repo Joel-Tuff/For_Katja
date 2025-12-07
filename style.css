@@ -59,7 +59,9 @@ body {
 /* SCREENS */
 .welcome-screen,
 .game-screen,
-.animation-screen {
+.animation-screen,
+.quiz-screen,
+.quiz-result-screen {
     position: absolute;
     inset: 0;
     background: black;
@@ -72,29 +74,42 @@ body {
 
 /* TEXT */
 .welcome-screen h1,
-.animation-screen h1 {
+.animation-screen h1,
+.quiz-screen h2,
+.quiz-result-screen h1 {
     font-size: clamp(32px, 8vw, 60px);
     color: #00c6ff;
     text-shadow: 0 0 20px #00c6ff;
     text-align: center;
 }
 
-.game-screen h2 {
-    color: white;
-    margin-bottom: 10px;
+.game-screen h2,
+.quiz-screen input,
+.quiz-screen button {
     text-align: center;
 }
 
-/* START BUTTON */
-#startBtn {
+#startBtn,
+.quiz-screen button {
     padding: 12px 30px;
     font-size: 18px;
     border-radius: 10px;
     border: none;
-    margin-bottom: 15px;
+    margin-top: 15px;
     background: lime;
     cursor: pointer;
     font-weight: bold;
+}
+
+#quizAnswer {
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    width: 80%;
+    max-width: 300px;
+    text-align: center;
 }
 
 /* CANVAS */
