@@ -1,9 +1,28 @@
-function showMessage() {
-    const msg = document.getElementById("message");
-    msg.innerText = "You clicked the button, Katja 😎";
-    msg.style.marginTop = "20px";
-    msg.style.fontSize = "1.2rem";
-    msg.style.color = "#a855f7";
-    msg.style.textShadow = "0 0 10px #a855f7";
+// ➜ HIER ÄNDERN: Benutzername und Passwort
+const VALID_USER = "Joel"; // <--- Benutzername anpassen
+const VALID_PASS = "28.11.2025"; // <--- Passwort anpassen
+
+
+function login() {
+const user = document.getElementById("username").value;
+const pass = document.getElementById("password").value;
+const msg = document.getElementById("message");
+
+
+if (user === VALID_USER && pass === VALID_PASS) {
+msg.style.color = "#4caf50";
+msg.textContent = "Erfolgreich eingeloggt!";
+document.body.classList.add("logged-in");
+} else {
+msg.style.color = "#ff4b4b";
+msg.textContent = "Falscher Benutzer oder Passwort";
+shake();
+}
 }
 
+
+function shake() {
+const card = document.querySelector(".login-card");
+card.classList.add("shake");
+setTimeout(() => card.classList.remove("shake"), 500);
+}
