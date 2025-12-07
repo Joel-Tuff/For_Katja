@@ -15,9 +15,18 @@
 <button onclick="login()">Anmelden</button>
 <p id="message"></p>
 </div>
+
+
+<!-- Aufklappbares Tipps-Menü -->
+<div class="tips-container">
+<button class="tips-toggle" onclick="toggleTips()">Tipps anzeigen</button>
+<div class="tips-box" id="tipsBox">
+<ul id="tipsList"></ul>
+</div>
+</div>
 </div>
 
 
-<script src="script.js"></script>
+<script src="script.js" onload="loadTips()"></script>
 </body>
 </html>
