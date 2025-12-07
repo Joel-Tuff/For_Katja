@@ -52,7 +52,7 @@ body {
     margin-top: 10px;
 }
 
-/* WILLKOMMEN */
+/* SCREENS */
 .welcome-screen,
 .game-screen,
 .end-screen {
@@ -65,6 +65,7 @@ body {
     flex-direction: column;
 }
 
+/* TEXT */
 .welcome-screen h1,
 .end-screen h1 {
     font-size: 60px;
@@ -88,6 +89,17 @@ body {
 .game-screen h2 {
     color: white;
     margin-bottom: 10px;
+}
+
+#startBtn {
+    padding: 12px 30px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 15px;
+    background: lime;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 canvas {
