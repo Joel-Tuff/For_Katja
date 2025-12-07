@@ -62,6 +62,8 @@ body {
 .quiz-screen button { background: #00c6ff; color: black; }
 .final-animation-screen button { background: #00ffff; color: black; box-shadow: 0 0 10px #00ffff,0 0 20px #00ffff; transition:0.2s;}
 .final-animation-screen button:hover { transform: scale(1.1); box-shadow: 0 0 20px #00ffff,0 0 40px #00ffff; }
+.button-game-screen button { background: lime; color: black; }
+
 #quizAnswer { padding:12px; margin-top:10px; border-radius:8px; border:none; font-size:16px; width:80%; max-width:300px; text-align:center; }
 
 /* CANVAS */
