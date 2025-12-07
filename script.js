@@ -1,18 +1,19 @@
-// ✅ LOGIN DATEN
+// =======================
+// LOGIN
+// =======================
 let correctUsername = "katja";
 let correctPassword = "1234";
 let errorMessage = "Falsche Login-Daten!";
 
-// ✅ ELEMENTE
 let loginBox = document.getElementById("loginBox");
 let welcomeScreen = document.getElementById("welcomeScreen");
 let welcomeText = document.getElementById("welcomeText");
 let gameScreen = document.getElementById("gameScreen");
-let endScreen = document.getElementById("endScreen");
-let errorText = document.getElementById("error-text");
 let startBtn = document.getElementById("startBtn");
+let animationScreen = document.getElementById("animationScreen");
+let animationText = document.getElementById("animationText");
+let errorText = document.getElementById("error-text");
 
-// ✅ LOGIN
 function login() {
     let u = document.getElementById("username").value;
     let p = document.getElementById("password").value;
@@ -31,7 +32,9 @@ function login() {
     }
 }
 
-// ✅ CANVAS SETUP (MOBIL SKALIERUNG)
+// =======================
+// FLAPPY BIRD GAME
+// =======================
 let canvas = document.getElementById("gameCanvas");
 let ctx = canvas.getContext("2d");
 
@@ -42,27 +45,17 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
 
-// ✅ GAME VARS
 let birdY, gravity, velocity;
 let pipeX, gap;
 let score;
 let gameLoop;
 let gameRunning = false;
 
-// ✅ STEUERUNG: TASTATUR + KLICK + TOUCH
-document.addEventListener("keydown", (e) => {
-    if (e.code === "Space" && gameRunning) velocity = -10;
-});
+// Steuerung
+document.addEventListener("keydown", (e) => { if (e.code === "Space" && gameRunning) velocity = -10; });
+canvas.addEventListener("click", () => { if (gameRunning) velocity = -10; });
+canvas.addEventListener("touchstart", () => { if (gameRunning) velocity = -10; });
 
-canvas.addEventListener("click", () => {
-    if (gameRunning) velocity = -10;
-});
-
-canvas.addEventListener("touchstart", () => {
-    if (gameRunning) velocity = -10;
-});
-
-// ✅ RESET
 function resetGame() {
     birdY = 200;
     gravity = 1.2;
@@ -78,7 +71,6 @@ function resetGame() {
 
 resetGame();
 
-// ✅ START BUTTON
 function startGame() {
     if (gameRunning) return;
 
@@ -89,19 +81,15 @@ function startGame() {
     gameLoop = setInterval(() => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // ✅ BIRD
+        // Bird
         velocity += gravity;
         birdY += velocity;
-
         ctx.fillStyle = "yellow";
         ctx.fillRect(50, birdY, 20, 20);
 
-        // ✅ PIPE
+        // Pipes
         pipeX -= 3;
-        if (pipeX < -40) {
-            pipeX = canvas.width;
-            score++;
-        }
+        if (pipeX < -40) { pipeX = canvas.width; score++; }
 
         let topPipeHeight = 150;
         let bottomPipeY = topPipeHeight + gap;
@@ -110,27 +98,58 @@ function startGame() {
         ctx.fillRect(pipeX, 0, 40, topPipeHeight);
         ctx.fillRect(pipeX, bottomPipeY, 40, canvas.height);
 
-        // ✅ SCORE
+        // Score
         ctx.fillStyle = "black";
         ctx.font = "16px Arial";
         ctx.fillText("Punkte: " + score, 10, 20);
 
-        // ✅ KOLLISION
+        // Collision
         if (
             (birdY < topPipeHeight && 70 > pipeX && 50 < pipeX + 40) ||
             (birdY + 20 > bottomPipeY && 70 > pipeX && 50 < pipeX + 40) ||
-            birdY > canvas.height ||
-            birdY < 0
-        ) {
-            resetGame(); // 💀 NEUSTART BEI CRASH
-        }
+            birdY > canvas.height || birdY < 0
+        ) { resetGame(); }
 
-        // ✅ WIN
+        // Win
         if (score >= 10) {
             clearInterval(gameLoop);
             gameScreen.style.display = "none";
-            endScreen.style.display = "flex";
+            startAnimations();
+        }
+    }, 20);
+}
+
+// =======================
+// ANIMATIONEN NACH SPIEL
+// =======================
+function startAnimations() {
+    let texts = [
+        "Jetzt kommen ein paar Fragen über mich",
+        "Wenn du nicht eine richtig hast, zerstört sich die Seite selber und du wirst nie das Ende sehen",
+        "Viel Glück"
+    ];
+
+    let current = 0;
+
+    function showNext() {
+        if (current >= texts.length) {
+            animationScreen.style.display = "none";
+            // Optional: hier könntest du Quiz starten
+            return;
         }
 
-    }, 20);
+        animationScreen.style.display = "flex";
+        animationText.textContent = texts[current];
+
+        switch(current) {
+            case 0: animationText.style.animation = "fadeZoom 2s ease-in-out"; break;
+            case 1: animationText.style.animation = "glitch 1.5s infinite"; break;
+            case 2: animationText.style.animation = "colorFlash 2s infinite"; break;
+        }
+
+        current++;
+        setTimeout(showNext, 3000);
+    }
+
+    showNext();
 }
