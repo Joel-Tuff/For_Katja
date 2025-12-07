@@ -2,25 +2,35 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Login System</title>
+    <title>Challenge System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- LOGIN -->
     <div class="login-box" id="loginBox">
         <h2>Login</h2>
-
         <input type="text" id="username" placeholder="Benutzername">
         <input type="password" id="password" placeholder="Passwort">
-
         <button onclick="login()">Anmelden</button>
-
         <p id="error-text"></p>
     </div>
 
-    <!-- ✅ WILLKOMMEN SCREEN -->
+    <!-- WILLKOMMEN -->
     <div class="welcome-screen" id="welcomeScreen">
         <h1 id="welcomeText"></h1>
+    </div>
+
+    <!-- GAME -->
+    <div class="game-screen" id="gameScreen">
+        <h2>Erreiche 10 Punkte!</h2>
+        <canvas id="gameCanvas" width="400" height="500"></canvas>
+    </div>
+
+    <!-- END ANIMATION -->
+    <div class="end-screen" id="endScreen">
+        <h1>Gut gemacht!</h1>
+        <p>Verbleibende Herausforderungen: 2</p>
     </div>
 
     <script src="script.js"></script>
