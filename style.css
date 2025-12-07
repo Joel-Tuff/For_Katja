@@ -1,1 +1,61 @@
+/* Dark Neon Style */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at center, #1a1a1a, #000000);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Container */
+.container {
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Title */
+.title {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.title span {
+    color: #a855f7;
+    text-shadow: 0 0 15px #a855f7;
+}
+
+/* Subtitle */
+.subtitle {
+    font-size: 1.3rem;
+    color: #ddd;
+    margin-bottom: 30px;
+}
+
+/* Button */
+.btn {
+    background: transparent;
+    color: #a855f7;
+    padding: 12px 28px;
+    border: 2px solid #a855f7;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #a855f7;
+    color: black;
+    box-shadow: 0 0 20px #a855f7;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
